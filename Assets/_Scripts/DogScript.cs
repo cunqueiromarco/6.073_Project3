@@ -17,9 +17,9 @@ public class DogScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		maxHealth = 10;
-		maxBarks = 10;
+		maxBarks = 20;
 		health = 10;
-		barks = 10;
+		barks = 20;
 	}
 
 	// Update is called once per frame
