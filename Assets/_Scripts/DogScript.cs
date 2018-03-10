@@ -7,11 +7,15 @@ public class DogScript : MonoBehaviour {
 	public float speed;
 	public float barkSpeed;
 
+	public int health;
+	public int ammo;
+
 	public GameObject barkPrefab;
 
 	// Use this for initialization
 	void Start () {
-		
+		health = 10;
+		ammo = 10;
 	}
 
 	// Update is called once per frame
@@ -43,7 +47,7 @@ public class DogScript : MonoBehaviour {
 	private void shoot(){
 		GameObject bark = (GameObject)Instantiate (barkPrefab, new Vector3(transform.position.x, transform.position.y, 1), transform.rotation);
 		Vector3 worldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-		worldPos.z = 0;
+		worldPos.z = 1;
 		Vector3 difference = worldPos - bark.transform.position;
 		difference.Normalize ();
 		bark.GetComponent<Rigidbody2D> ().AddForce (difference*barkSpeed);
