@@ -222,6 +222,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
+  barkSpeed: 200
+  barkPrefab: {fileID: 1269495331564900, guid: 189fbd6bd92fd4152b3063cc4af55380, type: 2}
 --- !u!4 &1212136032
 Transform:
   m_ObjectHideFlags: 0
@@ -229,7 +231,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1212136030}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1226719799}
