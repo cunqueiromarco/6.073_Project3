@@ -56,7 +56,7 @@ public class EnemyScript : MonoBehaviour {
         return;
     }
 
-    private void loseHealth()
+    public void loseHealth()
     {
         health -= 1;
         if (health <= 0)

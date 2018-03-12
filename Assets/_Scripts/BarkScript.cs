@@ -17,4 +17,12 @@ public class BarkScript : MonoBehaviour {
 			Destroy (gameObject);
 		}
 	}
+
+	void OnCollisionEnter2D(Collision2D coll) {
+		if (coll.gameObject.tag == "Enemy") {
+			EnemyScript enemyScript = coll.gameObject.GetComponent ("EnemyScript") as EnemyScript;
+			enemyScript.loseHealth ();
+			Object.Destroy (this.gameObject);
+		}
+	}
 }
