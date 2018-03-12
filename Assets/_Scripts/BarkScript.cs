@@ -18,7 +18,7 @@ public class BarkScript : MonoBehaviour {
 		}
 	}
 
-	void OnCollisionEnter2D(Collision2D coll) {
+	void OnTriggerEnter2D(Collider2D coll) {
 		if (coll.gameObject.tag == "Enemy") {
 			EnemyScript enemyScript = coll.gameObject.GetComponent ("EnemyScript") as EnemyScript;
 			enemyScript.loseHealth ();
