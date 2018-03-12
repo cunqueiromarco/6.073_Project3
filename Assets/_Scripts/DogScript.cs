@@ -9,6 +9,7 @@ public class DogScript : MonoBehaviour {
 	public float barkSpeed;
 	public int barks;
 	public Slider ammoSlider;
+	public Slider healthSlider;
 	public float barkRecoverSpeed;
 	public float barkTimeout;
 
