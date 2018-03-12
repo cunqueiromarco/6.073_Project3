@@ -7,17 +7,20 @@ public class DogScript : MonoBehaviour {
 
 	public float speed;
 	public float barkSpeed;
-	public int barks;
+	private int barks;
+	public float barkRecoverSpeed; // public so we can modify on the fly in game
+	private float barkTimeout;
 	public Slider ammoSlider;
+
+	public int health;
 	public Slider healthSlider;
-	public float barkRecoverSpeed;
-	public float barkTimeout;
+	public float healthRecoverSpeed; // public so we can modify on the fly in game
+	private float healthTimeout;
 
 	public GameObject barkPrefab;
 
 	private int maxHealth;
 	private int maxBarks;
-	private int health;
 
 	// Use this for initialization
 	void Start () {
@@ -27,6 +30,8 @@ public class DogScript : MonoBehaviour {
 		barks = 20;
 		barkRecoverSpeed = 3.0F;
 		barkTimeout = Time.time + barkRecoverSpeed;
+		healthRecoverSpeed = 3.0F;
+		healthTimeout = Time.time + healthRecoverSpeed;
 	}
 
 	// Update is called once per frame
@@ -37,6 +42,7 @@ public class DogScript : MonoBehaviour {
 			if (barks > 0) { shoot (); }
 		}
 		updateAmmoSlider ();
+		updateHealthSlider ();
 	}
 
 	private void move() {
@@ -68,10 +74,18 @@ public class DogScript : MonoBehaviour {
 
 	private void updateAmmoSlider() {
 		if (Time.time > barkTimeout) {
-			barks++;
+			gainBarks (1);
 			barkTimeout = Time.time + barkRecoverSpeed;
 		}
 		ammoSlider.value = getBarks ();
+	}
+
+	private void updateHealthSlider() {
+		if (Time.time > healthTimeout) {
+			gainHealth (1);
+			healthTimeout = Time.time + healthRecoverSpeed;
+		}
+		healthSlider.value = getHealth ();
 	}
 
 	public void gainBarks(int amount) {
