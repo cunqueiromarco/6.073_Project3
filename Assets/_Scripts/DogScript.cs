@@ -1,18 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class DogScript : MonoBehaviour {
 
 	public float speed;
 	public float barkSpeed;
+	public int barks;
+	public Slider ammoSlider;
+	public float barkRecoverSpeed;
+	public float barkTimeout;
 
 	public GameObject barkPrefab;
 
 	private int maxHealth;
 	private int maxBarks;
 	private int health;
-	private int barks;
 
 	// Use this for initialization
 	void Start () {
@@ -20,6 +24,8 @@ public class DogScript : MonoBehaviour {
 		maxBarks = 20;
 		health = 10;
 		barks = 20;
+		barkRecoverSpeed = 3.0F;
+		barkTimeout = Time.time + barkRecoverSpeed;
 	}
 
 	// Update is called once per frame
@@ -27,13 +33,12 @@ public class DogScript : MonoBehaviour {
 		move ();
 		rotate ();
 		if (Input.GetButtonDown ("Fire1")) {
-			if (barks > 0) {
-				shoot ();
-			}
+			if (barks > 0) { shoot (); }
 		}
+		updateAmmoSlider ();
 	}
 
-	private void move(){
+	private void move() {
 		float horizontalAxis = Input.GetAxisRaw ("Horizontal");
 		float verticalAxis = Input.GetAxisRaw ("Vertical");
 		Vector3 move = new Vector3 (horizontalAxis, verticalAxis, 0);
@@ -41,7 +46,7 @@ public class DogScript : MonoBehaviour {
 		transform.position += move * speed * Time.deltaTime;
 	}
 
-	private void rotate(){
+	private void rotate() {
 		// Rotating to look at cursor
 		Vector3 worldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		worldPos.z = 0;
@@ -50,7 +55,7 @@ public class DogScript : MonoBehaviour {
 		transform.localEulerAngles = new Vector3 (0, 0, angle);
 	}
 
-	private void shoot(){
+	private void shoot() {
 		barks--;
 		GameObject bark = (GameObject)Instantiate (barkPrefab, new Vector3(transform.position.x, transform.position.y, 1), transform.rotation);
 		Vector3 worldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -60,29 +65,37 @@ public class DogScript : MonoBehaviour {
 		bark.GetComponent<Rigidbody2D> ().AddForce (difference*barkSpeed);
 	}
 
-	public void gainBarks(int amount){
+	private void updateAmmoSlider() {
+		if (Time.time > barkTimeout) {
+			barks++;
+			barkTimeout = Time.time + barkRecoverSpeed;
+		}
+		ammoSlider.value = getBarks ();
+	}
+
+	public void gainBarks(int amount) {
 		barks += amount;
 		if (barks > maxBarks) {
 			barks = maxBarks;
 		}
 	}
 
-	public void gainHealth(int amount){
+	public void gainHealth(int amount) {
 		health += amount;
 		if (health > maxHealth) {
 			health = maxHealth;
 		}
 	}
 
-	public int getBarks(){
+	public int getBarks() {
 		return barks;
 	}
 
-	public int getMaxBarks(){
+	public int getMaxBarks() {
 		return maxBarks;
 	}
 
-	public int getHealth(){
+	public int getHealth() {
 		return health;
 	}
 
