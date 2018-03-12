@@ -45,7 +45,12 @@ public class EnemyScript : MonoBehaviour {
         // Attack once per second
         if (Time.time - lastAttacked > attackSpeed)
         {
-            //Attack logic here
+            //Attack logic
+            DogScript player = GameObject.FindGameObjectWithTag("Player").GetComponent("DogScript") as DogScript;
+            if (player.health > 0)
+            {
+                player.health -= 1;
+            }
             lastAttacked = Time.time;
         }
         return;
