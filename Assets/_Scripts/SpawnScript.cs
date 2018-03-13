@@ -17,6 +17,7 @@ public class SpawnScript : MonoBehaviour {
     public GameObject lionPrefab;
 
     private List<Vector3> spawnSpots;
+    private bool gameOver;
 
     // Use this for initialization
 	void Start () {
@@ -31,6 +32,7 @@ public class SpawnScript : MonoBehaviour {
         spawnSpots.Add(new Vector3(7.0f, 0, 0));
         spawnSpots.Add(new Vector3(0, 5.0f, 0));
         spawnSpots.Add(new Vector3(0, -5.0f, 0));
+        gameOver = false;
     }
 
     void spawnKitten()
@@ -53,29 +55,43 @@ public class SpawnScript : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-		if (Time.time - lastSpawn > spawnRate * (maxLevel - level + 1))
+        if (!gameOver)
         {
-            int val = Random.Range(0, 3);
-            if (val == 0)
+            if (Time.time - lastSpawn > spawnRate * (maxLevel - level + 1))
             {
-                spawnKitten();
+                int val = Random.Range(0, 3);
+                if (val == 0)
+                {
+                    spawnKitten();
+                }
+                else if (val == 1)
+                {
+                    spawnCat();
+                }
+                else
+                {
+                    spawnLion();
+                }
+                lastSpawn = Time.time;
             }
-            else if (val == 1)
+            if (Time.time - lastLevel > 30 && level < maxLevel)
             {
-                spawnCat();
+                level += 1;
+                LevelText.text = "Level " + level.ToString();
+                lastLevel = Time.time;
             }
-            else
+            if (Time.time - lastLevel > 30 && level == maxLevel)
             {
-                spawnLion();
+                makeGameOver();
             }
-            lastSpawn = Time.time;
         }
-        if (Time.time - lastLevel > 30 && level < maxLevel)
-        {
-            level += 1;
-            LevelText.text = "Level " + level.ToString();
-            lastLevel = Time.time;
-        }
-        
 	}
+
+    public void makeGameOver()
+    {
+        gameOver = true;
+        LevelText.text = "Game Over!";
+        DogScript player = GameObject.FindGameObjectWithTag("Player").GetComponent("DogScript") as DogScript;
+        player.makeGameOver();
+    }
 }
