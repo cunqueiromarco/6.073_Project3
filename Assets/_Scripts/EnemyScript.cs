@@ -59,9 +59,12 @@ public class EnemyScript : MonoBehaviour {
     public void loseHealth()
     {
         health -= 1;
+        // When enemy dies and updates player score
         if (health <= 0)
         {
             Object.Destroy(this.gameObject);
+            DogScript player = GameObject.FindGameObjectWithTag("Player").GetComponent("DogScript") as DogScript;
+            player.addScore(1);
         }
     }
 

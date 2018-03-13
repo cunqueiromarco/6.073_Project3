@@ -22,27 +22,43 @@ public class DogScript : MonoBehaviour {
 	private int maxHealth;
 	private int maxBarks;
 
+    private int score;
+    public Text scoreText;
+
+    private bool gameOver;
+
 	// Use this for initialization
 	void Start () {
 		maxHealth = 10;
 		maxBarks = 20;
 		health = 10;
 		barks = 20;
+        score = 0;
+        scoreText.text = score.ToString();
 		barkRecoverSpeed = 3.0F;
 		barkTimeout = Time.time + barkRecoverSpeed;
 		healthRecoverSpeed = 3.0F;
 		healthTimeout = Time.time + healthRecoverSpeed;
+        gameOver = false;
 	}
 
 	// Update is called once per frame
 	void Update () {
-		move ();
-		rotate ();
-		if (Input.GetButtonDown ("Fire1")) {
-			if (barks > 0) { shoot (); }
-		}
-		updateAmmoSlider ();
-		updateHealthSlider ();
+        if (!gameOver)
+        {
+            if (health <= 0)
+            {
+                makeGameOver();
+            }
+            move();
+            rotate();
+            if (Input.GetButtonDown("Fire1"))
+            {
+                if (barks > 0) { shoot(); }
+            }
+            updateAmmoSlider();
+            updateHealthSlider();
+        }
 	}
 
 	private void move() {
@@ -118,4 +134,23 @@ public class DogScript : MonoBehaviour {
 	public int getMaxHealth(){
 		return maxHealth;
 	}
+
+    public void addScore(int inc)
+    {
+        score += inc;
+        scoreText.text = score.ToString();
+    }
+
+    public void makeGameOver()
+    {
+        gameOver = true;
+        // Remove all cats from field
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (GameObject enemy in enemies)
+        {
+            Object.Destroy(enemy);
+        }
+        SpawnScript spawn = GameObject.Find("Spawn").GetComponent("SpawnScript") as SpawnScript;
+        spawn.makeGameOver();
+    }
 }
