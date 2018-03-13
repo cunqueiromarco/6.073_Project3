@@ -22,12 +22,17 @@ public class DogScript : MonoBehaviour {
 	private int maxHealth;
 	private int maxBarks;
 
+    private int score;
+    public Text scoreText;
+
 	// Use this for initialization
 	void Start () {
 		maxHealth = 10;
 		maxBarks = 20;
 		health = 10;
 		barks = 20;
+        score = 0;
+        scoreText.text = score.ToString();
 		barkRecoverSpeed = 3.0F;
 		barkTimeout = Time.time + barkRecoverSpeed;
 		healthRecoverSpeed = 3.0F;
@@ -118,4 +123,10 @@ public class DogScript : MonoBehaviour {
 	public int getMaxHealth(){
 		return maxHealth;
 	}
+
+    public void addScore(int inc)
+    {
+        score += inc;
+        scoreText.text = score.ToString();
+    }
 }
