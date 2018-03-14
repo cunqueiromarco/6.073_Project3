@@ -83,6 +83,8 @@ public class SpawnScript : MonoBehaviour {
             if (Time.time - lastLevel > 30 && level == maxLevel)
             {
                 makeGameOver();
+                DogScript player = GameObject.FindGameObjectWithTag("Player").GetComponent("DogScript") as DogScript;
+                player.makeGameOver();
             }
         }
 	}
@@ -91,7 +93,5 @@ public class SpawnScript : MonoBehaviour {
     {
         gameOver = true;
         LevelText.text = "Game Over!";
-        DogScript player = GameObject.FindGameObjectWithTag("Player").GetComponent("DogScript") as DogScript;
-        player.makeGameOver();
     }
 }
