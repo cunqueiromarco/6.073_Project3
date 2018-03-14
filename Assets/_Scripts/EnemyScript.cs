@@ -36,7 +36,7 @@ public class EnemyScript : MonoBehaviour {
     private void rotateToPlayer()
     {
         Vector3 difference = target.position - transform.position;
-        float angle = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg + 90f;
+        float angle = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg - 90f;
         transform.localEulerAngles = new Vector3(0, 0, angle);
     }
 

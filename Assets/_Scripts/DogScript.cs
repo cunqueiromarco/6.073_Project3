@@ -74,14 +74,14 @@ public class DogScript : MonoBehaviour {
 		Vector3 worldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		worldPos.z = 0;
 		Vector3 difference = worldPos - transform.position;
-		float angle = Mathf.Atan2 (difference.y, difference.x) * Mathf.Rad2Deg + 90f;
+		float angle = Mathf.Atan2 (difference.y, difference.x) * Mathf.Rad2Deg - 90f;
 		transform.localEulerAngles = new Vector3 (0, 0, angle);
 	}
 
 	private void shoot() {
 		barks--;
 		GameObject bark = (GameObject)Instantiate (barkPrefab, new Vector3(transform.position.x, transform.position.y, 1), transform.rotation);
-		bark.transform.localEulerAngles = new Vector3 (0, 0, transform.localEulerAngles.z + 180f);
+		bark.transform.localEulerAngles = new Vector3 (0, 0, transform.localEulerAngles.z);
 		Vector3 worldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		worldPos.z = 1;
 		Vector3 difference = worldPos - bark.transform.position;
