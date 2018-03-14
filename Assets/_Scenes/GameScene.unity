@@ -803,7 +803,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c06323fec5e84ffba1191e86d971e91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 4
   barkSpeed: 200
   barkRecoverSpeed: 0
   ammoSlider: {fileID: 1855822413}
