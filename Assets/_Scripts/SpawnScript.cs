@@ -21,7 +21,7 @@ public class SpawnScript : MonoBehaviour {
 
     // Use this for initialization
 	void Start () {
-        spawnRate = 2.0f;
+        spawnRate = 0.5f;
         lastSpawn = Time.time;
         lastLevel = Time.time;
         maxLevel = 5;

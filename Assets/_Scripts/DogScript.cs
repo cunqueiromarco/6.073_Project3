@@ -35,7 +35,7 @@ public class DogScript : MonoBehaviour {
 		barks = 20;
         score = 0;
         scoreText.text = score.ToString();
-		barkRecoverSpeed = 3.0F;
+		barkRecoverSpeed = 1.0F;
 		barkTimeout = Time.time + barkRecoverSpeed;
 		healthRecoverSpeed = 3.0F;
 		healthTimeout = Time.time + healthRecoverSpeed;
