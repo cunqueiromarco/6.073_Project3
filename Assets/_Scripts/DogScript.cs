@@ -58,15 +58,37 @@ public class DogScript : MonoBehaviour {
             }
             updateAmmoSlider();
             updateHealthSlider();
+			Vector3 camPosition = new Vector3 (Camera.main.transform.position.x, Camera.main.transform.position.y, -10);
+			if (transform.position.x > -9.66f && transform.position.x < 9.66f) {
+				camPosition.x = transform.position.x;
+			}
+			if (transform.position.y > -5.8f && transform.position.y < 5.8f) {
+				camPosition.y = transform.position.y;
+			}
+			Camera.main.transform.position = camPosition;
         }
 	}
 
 	private void move() {
 		float horizontalAxis = Input.GetAxisRaw ("Horizontal");
 		float verticalAxis = Input.GetAxisRaw ("Vertical");
-		Vector3 move = new Vector3 (horizontalAxis, verticalAxis, 0);
+		Vector2 move = new Vector2 (horizontalAxis, verticalAxis);
 		move.Normalize ();
-		transform.position += move * speed * Time.deltaTime;
+		Vector2 newPosition = new Vector2 (transform.position.x, transform.position.y);
+		newPosition += move * speed * Time.deltaTime;
+		if (newPosition.x <= -16.9f) {
+			newPosition.x = -16.9f;
+		}else if(newPosition.x >= 16.9f) {
+			newPosition.x = 16.9f;
+		}
+
+		if (newPosition.y <= -9.8) {
+			newPosition.y = -9.8f;
+		}else if (newPosition.y >= 9.8) {
+			newPosition.y = 9.8f;
+		}
+		GetComponent<Rigidbody2D> ().MovePosition (newPosition);
+		transform.position = new Vector3 (newPosition.x, newPosition.y, 2);
 	}
 
 	private void rotate() {
@@ -153,4 +175,8 @@ public class DogScript : MonoBehaviour {
         SpawnScript spawn = GameObject.Find("Spawn").GetComponent("SpawnScript") as SpawnScript;
         spawn.makeGameOver();
     }
+
+	void OnTriggerEnter2D(Collider2D coll) {
+		Debug.Log ("TRIGGERED");
+	}
 }

@@ -29,7 +29,9 @@ public class EnemyScript : MonoBehaviour {
         }
         else
         {
-            transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+			Vector3 newPosition = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+			GetComponent<Rigidbody2D> ().MovePosition (new Vector2 (newPosition.x, newPosition.y));
+			transform.position = newPosition;
         }
     }
 
