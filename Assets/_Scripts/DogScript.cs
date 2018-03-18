@@ -49,6 +49,8 @@ public class DogScript : MonoBehaviour {
             if (health <= 0)
             {
                 makeGameOver();
+                SpawnScript spawn = GameObject.Find("Spawn").GetComponent("SpawnScript") as SpawnScript;
+                spawn.makeGameOver(false);
             }
             move();
             rotate();
@@ -172,8 +174,6 @@ public class DogScript : MonoBehaviour {
         {
             Object.Destroy(enemy);
         }
-        SpawnScript spawn = GameObject.Find("Spawn").GetComponent("SpawnScript") as SpawnScript;
-        spawn.makeGameOver(false);
     }
 
 }

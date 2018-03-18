@@ -111,7 +111,7 @@ public class SpawnScript : MonoBehaviour {
         }
         else
         {
-            LevelText.text = "Game Over!";
+            LevelText.text = "You lose!";
         }
         TimerText.text = "";
     }
