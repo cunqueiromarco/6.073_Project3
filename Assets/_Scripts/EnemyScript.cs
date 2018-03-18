@@ -23,15 +23,19 @@ public class EnemyScript : MonoBehaviour {
 	void Update () {
         rotateToPlayer();
         float distance = Vector3.Distance(transform.position, target.position);
-        if (distance < 1.0)
-        {
-            attack();
-        }
-        else
+        if (distance >= 1.0)
         {
 			Vector3 newPosition = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
 			GetComponent<Rigidbody2D> ().MovePosition (new Vector2 (newPosition.x, newPosition.y));
 			transform.position = newPosition;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            attack();
         }
     }
 
