@@ -12,6 +12,7 @@ public class SpawnScript : MonoBehaviour {
     private int maxLevel;
 
     public Text LevelText;
+    public Text TimerText;
     public GameObject kittenPrefab;
     public GameObject catPrefab;
     public GameObject lionPrefab;
@@ -26,7 +27,8 @@ public class SpawnScript : MonoBehaviour {
         lastLevel = Time.time;
         maxLevel = 5;
         level = 1;
-        LevelText.text = "Level " + level.ToString();
+        LevelText.text = "Wave " + level.ToString();
+        TimerText.text = "Next Wave: 30"; 
         spawnSpots = new List<Vector3>();
         spawnSpots.Add(new Vector3(-5.5f, -10.0f, 0));
         spawnSpots.Add(new Vector3(5.5f, -10.0f, 0));
@@ -60,6 +62,14 @@ public class SpawnScript : MonoBehaviour {
     void Update () {
         if (!gameOver)
         {
+            if (lastLevel == maxLevel)
+            {
+                TimerText.text = "Time till Win: " + (30 - (int)(Time.time - lastLevel)).ToString();
+            }
+            else
+            {
+                TimerText.text = "Next Wave: " + (30 - (int)(Time.time - lastLevel)).ToString();
+            }
             if (Time.time - lastSpawn > spawnRate * (maxLevel - level + 1))
             {
                 int val = Random.Range(0, 3);
@@ -80,21 +90,29 @@ public class SpawnScript : MonoBehaviour {
             if (Time.time - lastLevel > 30 && level < maxLevel)
             {
                 level += 1;
-                LevelText.text = "Level " + level.ToString();
+                LevelText.text = "Wave " + level.ToString();
                 lastLevel = Time.time;
             }
             if (Time.time - lastLevel > 30 && level == maxLevel)
             {
-                makeGameOver();
+                makeGameOver(true);
                 DogScript player = GameObject.FindGameObjectWithTag("Player").GetComponent("DogScript") as DogScript;
                 player.makeGameOver();
             }
         }
 	}
 
-    public void makeGameOver()
+    public void makeGameOver(bool win)
     {
         gameOver = true;
-        LevelText.text = "Game Over!";
+        if (win)
+        {
+            LevelText.text = "You Win!";
+        }
+        else
+        {
+            LevelText.text = "Game Over!";
+        }
+        TimerText.text = "";
     }
 }

@@ -173,7 +173,7 @@ public class DogScript : MonoBehaviour {
             Object.Destroy(enemy);
         }
         SpawnScript spawn = GameObject.Find("Spawn").GetComponent("SpawnScript") as SpawnScript;
-        spawn.makeGameOver();
+        spawn.makeGameOver(false);
     }
 
 }
