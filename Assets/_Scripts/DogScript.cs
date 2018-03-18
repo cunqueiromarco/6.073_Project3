@@ -176,7 +176,4 @@ public class DogScript : MonoBehaviour {
         spawn.makeGameOver();
     }
 
-	void OnTriggerEnter2D(Collider2D coll) {
-		Debug.Log ("TRIGGERED");
-	}
 }

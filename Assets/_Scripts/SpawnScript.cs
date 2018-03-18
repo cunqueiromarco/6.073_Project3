@@ -28,29 +28,32 @@ public class SpawnScript : MonoBehaviour {
         level = 1;
         LevelText.text = "Level " + level.ToString();
         spawnSpots = new List<Vector3>();
-        spawnSpots.Add(new Vector3(-7.0f, 0, 0));
-        spawnSpots.Add(new Vector3(7.0f, 0, 0));
-        spawnSpots.Add(new Vector3(0, 5.0f, 0));
-        spawnSpots.Add(new Vector3(0, -5.0f, 0));
+        spawnSpots.Add(new Vector3(-5.5f, -10.0f, 0));
+        spawnSpots.Add(new Vector3(5.5f, -10.0f, 0));
+        spawnSpots.Add(new Vector3(-5.5f, 10.0f, 0));
+        spawnSpots.Add(new Vector3(5.5f, 10.0f, 0));
+        spawnSpots.Add(new Vector3(-17.0f, 5.0f, 0));
+        spawnSpots.Add(new Vector3(17.0f, -5.0f, 0));
+        spawnSpots.Add(new Vector3(-17.0f, 5.0f, 0));
         gameOver = false;
     }
 
     void spawnKitten()
     {
-        Vector3 spawnLocation = spawnSpots[Random.Range(0, 4)];
+        Vector3 spawnLocation = spawnSpots[Random.Range(0, 7)];
         GameObject kitten = (GameObject)Instantiate(kittenPrefab, spawnLocation, new Quaternion());
     }
 
     void spawnCat()
     {
-        Vector3 spawnLocation = spawnSpots[Random.Range(0, 4)];
+        Vector3 spawnLocation = spawnSpots[Random.Range(0, 7)];
         GameObject cat = (GameObject)Instantiate(catPrefab, spawnLocation, new Quaternion());
     }
 
     void spawnLion()
     {
-        Vector3 spawnLocation = spawnSpots[Random.Range(0, 4)];
-        GameObject cat = (GameObject)Instantiate(lionPrefab, spawnLocation, new Quaternion());
+        Vector3 spawnLocation = spawnSpots[Random.Range(0, 7)];
+        GameObject lion = (GameObject)Instantiate(lionPrefab, spawnLocation, new Quaternion());
     }
 
     // Update is called once per frame
