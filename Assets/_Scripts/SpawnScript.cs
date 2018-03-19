@@ -35,7 +35,7 @@ public class SpawnScript : MonoBehaviour {
         GameOverText.text = "";
         SubText.text = "";
         replayButton.SetActive(false);
-        spawnSpots = new List<Vector3>();
+        spawnSpots = new List<Vector3>(); 
         spawnSpots.Add(new Vector3(-5.5f, -10.0f, 0));
         spawnSpots.Add(new Vector3(5.5f, -10.0f, 0));
         spawnSpots.Add(new Vector3(-5.5f, 10.0f, 0));
@@ -116,6 +116,5 @@ public class SpawnScript : MonoBehaviour {
             GameOverText.text = "You lose!";
             SubText.text = "Bark Again Next Time...";
         }
-        TimerText.text = "";
     }
 }
