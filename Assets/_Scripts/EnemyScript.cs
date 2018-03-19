@@ -8,6 +8,9 @@ public class EnemyScript : MonoBehaviour {
     private Transform target;
     private float speed;
 
+    public AudioClip sound;
+    private AudioSource source;
+
     private float lastAttacked;
     private float attackSpeed;
 
@@ -17,7 +20,10 @@ public class EnemyScript : MonoBehaviour {
         speed = 0.5f;
         attackSpeed = 1.0f;
         lastAttacked = Time.time;
-	}
+
+        source = GetComponent<AudioSource>();
+        source.clip = sound;
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -68,7 +74,6 @@ public class EnemyScript : MonoBehaviour {
         // When enemy dies and updates player score
         if (health <= 0)
         {
-            AudioSource source = GetComponent<AudioSource>();
             source.Play();
             GetComponent<Renderer>().enabled = false;
             Object.Destroy(GetComponent<Rigidbody2D>());

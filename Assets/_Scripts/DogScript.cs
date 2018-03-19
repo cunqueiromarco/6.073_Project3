@@ -18,6 +18,9 @@ public class DogScript : MonoBehaviour {
 
 	public GameObject barkPrefab;
 
+    public AudioClip barkClip;
+    private AudioSource source;
+
 	private int maxHealth;
 	private int maxBarks;
 
@@ -37,6 +40,9 @@ public class DogScript : MonoBehaviour {
         scoreText.text = score.ToString();
 		barkRecoverSpeed = 1.0F;
         gameOver = false;
+
+        source = GetComponent<AudioSource>();
+        source.clip = barkClip;
 	}
 
 	// Update is called once per frame
@@ -110,6 +116,8 @@ public class DogScript : MonoBehaviour {
 		Vector3 difference = worldPos - bark.transform.position;
 		difference.Normalize ();
 		bark.GetComponent<Rigidbody2D> ().AddForce (difference*barkSpeed);
+
+        source.Play();
 	}
 
 	private void updateAmmoSlider() {
