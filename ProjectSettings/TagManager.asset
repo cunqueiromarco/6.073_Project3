@@ -7,7 +7,7 @@ TagManager:
   - Enemy
   - Map
   - Ammo
-  - AmmoSpawnScript
+  - AmmoScript
   layers:
   - Default
   - TransparentFX

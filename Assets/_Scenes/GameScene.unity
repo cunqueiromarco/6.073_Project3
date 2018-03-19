@@ -950,6 +950,10 @@ Prefab:
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1032130450821214, guid: 3015194dcf9d34c019ca0ed6a1e44b0b, type: 2}
+      propertyPath: m_TagString
+      value: AmmoScript
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 212582221539922828, guid: 3015194dcf9d34c019ca0ed6a1e44b0b, type: 2}
     - {fileID: 114933795427365790, guid: 3015194dcf9d34c019ca0ed6a1e44b0b, type: 2}
