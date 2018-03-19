@@ -17,7 +17,6 @@ public class MapScript : MonoBehaviour {
 	}
 
 	public void changeToBlack() {
-		print ("changing color");
 		spriteR.color = new Color(0.0f, 0.0f, 0.0f);
 	}
 

@@ -97,13 +97,19 @@ public class SpawnScript : MonoBehaviour {
             {
                 makeGameOver(true);
                 DogScript player = GameObject.FindGameObjectWithTag("Player").GetComponent("DogScript") as DogScript;
-                player.makeGameOver();
+				player.makeGameOver();
             }
         }
 	}
 
     public void makeGameOver(bool win)
     {
+		MapScript map = GameObject.FindGameObjectWithTag ("Map").GetComponent ("MapScript") as MapScript;
+		map.changeToBlack ();
+
+		AmmoSpawnScript ammo = GameObject.FindGameObjectWithTag ("AmmoScript").GetComponent ("AmmoSpawnScript") as AmmoSpawnScript;
+		AmmoSpawnScript.gameOver = true;
+
         gameOver = true;
         replayButton.SetActive(true);
         if (win)

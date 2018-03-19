@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - Map
+  - Ammo
+  - AmmoSpawnScript
   layers:
   - Default
   - TransparentFX
