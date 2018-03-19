@@ -453,7 +453,7 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 21300000, guid: 386f36df5200b2e48a28f81b84e02b64,
+    m_HighlightedSprite: {fileID: 21300000, guid: 4f50490a14b444a30ac8533774d3224e,
       type: 3}
     m_PressedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
@@ -2182,7 +2182,7 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 21300000, guid: 699747387cc659c429c1e5a2a620d41a,
+    m_HighlightedSprite: {fileID: 21300000, guid: 8e9a5aeed54914c81abb8649440547d8,
       type: 3}
     m_PressedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
@@ -2394,9 +2394,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1424487335}
   - component: {fileID: 1424487334}
+  - component: {fileID: 1424487336}
   m_Layer: 0
   m_Name: Map
-  m_TagString: Untagged
+  m_TagString: Map
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2458,6 +2459,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1424487336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1424487333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f77ad3081de6244d796f73a540f74210, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1481121318
 GameObject:
   m_ObjectHideFlags: 0

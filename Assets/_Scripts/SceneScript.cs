@@ -17,6 +17,8 @@ public class SceneScript : MonoBehaviour {
 
     public void loadScene(string scene)
     {
+		MapScript map = GameObject.FindGameObjectWithTag ("Map").GetComponent ("MapScript") as MapScript;
+		map.changeToWhite ();
         SceneManager.LoadScene(scene);
     }
 }

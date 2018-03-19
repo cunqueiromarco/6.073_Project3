@@ -15,14 +15,27 @@ public class AmmoSpawnScript : MonoBehaviour {
 	private int yTopBound = 9;
 	private int yBottomBound = -9;
 
+	public static bool gameOver;
+
 	// Use this for initialization
 	void Start () {
 		ammoSpawnSpeed = 5.0F;
 		ammoSpawnTimeout = Time.time + ammoSpawnSpeed;
+		gameOver = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
+		if (gameOver) {
+			GameObject[] ammos = GameObject.FindGameObjectsWithTag("Ammo");
+			foreach (GameObject ammo in ammos)
+			{
+				Object.Destroy(ammo);
+			}
+			return;
+		}
+
 		if (Time.time > ammoSpawnTimeout) {
 			SpawnAmmo ();
 			ammoSpawnTimeout = Time.time + ammoSpawnSpeed;

@@ -179,5 +179,4 @@ public class DogScript : MonoBehaviour {
             Object.Destroy(enemy);
         }
     }
-
 }
