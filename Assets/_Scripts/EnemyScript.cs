@@ -68,7 +68,13 @@ public class EnemyScript : MonoBehaviour {
         // When enemy dies and updates player score
         if (health <= 0)
         {
-            Object.Destroy(this.gameObject);
+            AudioSource source = GetComponent<AudioSource>();
+            source.Play();
+            GetComponent<Renderer>().enabled = false;
+            Object.Destroy(GetComponent<Rigidbody2D>());
+            Object.Destroy(GetComponent<BoxCollider2D>());
+
+            Object.Destroy(this.gameObject,source.clip.length);
             DogScript player = GameObject.FindGameObjectWithTag("Player").GetComponent("DogScript") as DogScript;
             player.addScore(1);
         }
