@@ -13,6 +13,8 @@ public class SpawnScript : MonoBehaviour {
 
     public Text LevelText;
     public Text TimerText;
+    public Text GameOverText;
+    public Text SubText;
     public GameObject kittenPrefab;
     public GameObject catPrefab;
     public GameObject lionPrefab;
@@ -28,7 +30,9 @@ public class SpawnScript : MonoBehaviour {
         maxLevel = 5;
         level = 1;
         LevelText.text = "Wave " + level.ToString();
-        TimerText.text = "Next Wave: 30"; 
+        TimerText.text = "Next Wave: 30";
+        GameOverText.text = "";
+        SubText.text = "";
         spawnSpots = new List<Vector3>();
         spawnSpots.Add(new Vector3(-5.5f, -10.0f, 0));
         spawnSpots.Add(new Vector3(5.5f, -10.0f, 0));
@@ -62,7 +66,7 @@ public class SpawnScript : MonoBehaviour {
     void Update () {
         if (!gameOver)
         {
-            TimerText.text = "0:" + (30 - (int)(Time.time - lastLevel)).ToString();
+            TimerText.text = "0:" + (30 - (int)(Time.time - lastLevel)).ToString("D2");
             
             if (Time.time - lastSpawn > spawnRate * (maxLevel - level + 1))
             {
@@ -101,11 +105,13 @@ public class SpawnScript : MonoBehaviour {
         gameOver = true;
         if (win)
         {
-            LevelText.text = "You Win!";
+            GameOverText.text = "You Win!";
+            SubText.text = "Good boy.";
         }
         else
         {
-            LevelText.text = "You lose!";
+            GameOverText.text = "You lose!";
+            SubText.text = "Bark Again Next Time...";
         }
         TimerText.text = "";
     }
