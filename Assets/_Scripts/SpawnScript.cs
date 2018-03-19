@@ -62,14 +62,8 @@ public class SpawnScript : MonoBehaviour {
     void Update () {
         if (!gameOver)
         {
-            if (lastLevel == maxLevel)
-            {
-                TimerText.text = "Time till Win: " + (30 - (int)(Time.time - lastLevel)).ToString();
-            }
-            else
-            {
-                TimerText.text = "Next Wave: " + (30 - (int)(Time.time - lastLevel)).ToString();
-            }
+            TimerText.text = "0:" + (30 - (int)(Time.time - lastLevel)).ToString();
+            
             if (Time.time - lastSpawn > spawnRate * (maxLevel - level + 1))
             {
                 int val = Random.Range(0, 3);

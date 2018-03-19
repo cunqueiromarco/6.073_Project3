@@ -34,6 +34,7 @@ public class DogScript : MonoBehaviour {
 		health = 10;
 		barks = 20;
         score = 0;
+        GetComponent<Animator>().speed = 1;
         scoreText.text = score.ToString();
 		barkRecoverSpeed = 1.0F;
 		barkTimeout = Time.time + barkRecoverSpeed;
@@ -168,6 +169,7 @@ public class DogScript : MonoBehaviour {
     public void makeGameOver()
     {
         gameOver = true;
+        GetComponent<Animator>().speed = 0;
         // Remove all cats from field
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         foreach (GameObject enemy in enemies)
