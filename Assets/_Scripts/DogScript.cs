@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.Analytics;
 
 public class DogScript : MonoBehaviour {
 
@@ -25,6 +26,7 @@ public class DogScript : MonoBehaviour {
 	private int maxBarks;
 
     private int score;
+    private int startTime;
     public Text scoreText;
 
     private bool gameOver;
@@ -106,8 +108,17 @@ public class DogScript : MonoBehaviour {
 	}
 
 	private void shoot() {
-		barks--;
-		GetComponent<Animator> ().SetTrigger ("TriggerBark");
+        barks--;
+
+        Analytics.CustomEvent("ShotFired", new Dictionary<string, object>
+        {
+            { "x-pos", transform.position.x },
+            { "y-pos", transform.position.y },
+            { "barksLeft", barks },
+            { "time", (int)(Time.time - startTime) }
+        });
+
+        GetComponent<Animator> ().SetTrigger ("TriggerBark");
 
 		GameObject bark = (GameObject)Instantiate (barkPrefab, new Vector3(transform.position.x, transform.position.y, 1), transform.rotation);
 		bark.transform.localEulerAngles = new Vector3 (0, 0, transform.localEulerAngles.z);
@@ -170,6 +181,12 @@ public class DogScript : MonoBehaviour {
 
     public void makeGameOver()
     {
+        Analytics.CustomEvent("GameOver", new Dictionary<string, object>
+        {
+            { "score", score },
+            { "time", (int)(Time.time - startTime) }
+        });
+
         gameOver = true;
         GetComponent<Animator>().speed = 0;
         // Remove all cats from field

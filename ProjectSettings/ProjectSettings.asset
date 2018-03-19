@@ -636,12 +636,13 @@ PlayerSettings:
     daydream:
       daydreamIconForeground: {fileID: 0}
       daydreamIconBackground: {fileID: 0}
-  cloudServicesEnabled: {}
+  cloudServicesEnabled:
+    UNet: 1
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2
-  cloudProjectId: 9614f62d-dbe5-4344-ae31-7a373df9d636
-  projectName: 6.073 Project 3 (1)
-  organizationId: 4everanewb
+  cloudProjectId: c5735a21-6382-4282-9127-fbf64caff01c
+  projectName: Woof Side Story (6.073 Project 3)
+  organizationId: terranceliang01
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
