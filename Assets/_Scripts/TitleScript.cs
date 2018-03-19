@@ -15,7 +15,11 @@ public class TitleScript : MonoBehaviour {
 		
 	}
 
-	public void NextScene() {
+	public void ToGameScene() {
+		SceneManager.LoadScene ("GameScene");
+	}
+
+	public void ToInstructionsScene() {
 		SceneManager.LoadScene ("InstructionsScene");
 	}
 

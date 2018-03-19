@@ -15,8 +15,6 @@ public class DogScript : MonoBehaviour {
 
 	public int health;
 	public Slider healthSlider;
-	public float healthRecoverSpeed; // public so we can modify on the fly in game
-	private float healthTimeout;
 
 	public GameObject barkPrefab;
 
@@ -38,9 +36,6 @@ public class DogScript : MonoBehaviour {
         GetComponent<Animator>().speed = 1;
         scoreText.text = score.ToString();
 		barkRecoverSpeed = 1.0F;
-		barkTimeout = Time.time + barkRecoverSpeed;
-		healthRecoverSpeed = 3.0F;
-		healthTimeout = Time.time + healthRecoverSpeed;
         gameOver = false;
 	}
 
@@ -126,10 +121,6 @@ public class DogScript : MonoBehaviour {
 	}
 
 	private void updateHealthSlider() {
-		if (Time.time > healthTimeout) {
-			gainHealth (1);
-			healthTimeout = Time.time + healthRecoverSpeed;
-		}
 		healthSlider.value = getHealth ();
 	}
 
