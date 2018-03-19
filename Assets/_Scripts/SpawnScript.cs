@@ -18,6 +18,7 @@ public class SpawnScript : MonoBehaviour {
     public GameObject kittenPrefab;
     public GameObject catPrefab;
     public GameObject lionPrefab;
+    public GameObject replayButton;
 
     private List<Vector3> spawnSpots;
     private bool gameOver;
@@ -33,6 +34,7 @@ public class SpawnScript : MonoBehaviour {
         TimerText.text = "Next Wave: 30";
         GameOverText.text = "";
         SubText.text = "";
+        replayButton.SetActive(false);
         spawnSpots = new List<Vector3>();
         spawnSpots.Add(new Vector3(-5.5f, -10.0f, 0));
         spawnSpots.Add(new Vector3(5.5f, -10.0f, 0));
@@ -103,6 +105,7 @@ public class SpawnScript : MonoBehaviour {
     public void makeGameOver(bool win)
     {
         gameOver = true;
+        replayButton.SetActive(true);
         if (win)
         {
             GameOverText.text = "You Win!";
