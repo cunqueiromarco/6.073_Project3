@@ -9,8 +9,8 @@ public class AmmoSpawnScript : MonoBehaviour {
 
 	public GameObject ammoPrefab;
 
-	private int xRightBound = 16;
-	private int xLeftBound = -16;
+	private int xRightBound = 8;
+	private int xLeftBound = -8;
 
 	private int yTopBound = 9;
 	private int yBottomBound = -9;
