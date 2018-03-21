@@ -24,5 +24,9 @@ public class BarkScript : MonoBehaviour {
 			enemyScript.loseHealth ();
 			Object.Destroy (this.gameObject);
 		}
+
+		if (coll.gameObject.tag == "Obstacle") {
+			Object.Destroy (this.gameObject);
+		}
 	}
 }
