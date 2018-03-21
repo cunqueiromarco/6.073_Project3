@@ -14,6 +14,8 @@ public class EnemyScript : MonoBehaviour {
     private float lastAttacked;
     private float attackSpeed;
 
+	public int damage;
+
 	// Use this for initialization
 	void Start () {
         target = GameObject.FindGameObjectWithTag("Player").transform;
@@ -61,7 +63,7 @@ public class EnemyScript : MonoBehaviour {
             DogScript player = GameObject.FindGameObjectWithTag("Player").GetComponent("DogScript") as DogScript;
             if (player.health > 0)
             {
-                player.health -= 1;
+				player.health -= damage;
             }
             lastAttacked = Time.time;
         }

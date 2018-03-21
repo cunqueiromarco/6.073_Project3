@@ -33,9 +33,9 @@ public class DogScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		maxHealth = 10;
+		maxHealth = 20;
 		maxBarks = 20;
-		health = 10;
+		health = 20;
 		barks = 20;
         score = 0;
         GetComponent<Animator>().speed = 1;

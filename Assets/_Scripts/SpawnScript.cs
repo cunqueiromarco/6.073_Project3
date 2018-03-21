@@ -50,18 +50,24 @@ public class SpawnScript : MonoBehaviour {
     {
         Vector3 spawnLocation = spawnSpots[Random.Range(0, 7)];
         GameObject kitten = (GameObject)Instantiate(kittenPrefab, spawnLocation, new Quaternion());
+		EnemyScript enemy = kitten.GetComponent ("EnemyScript") as EnemyScript;
+		enemy.damage = 1;
     }
 
     void spawnCat()
     {
         Vector3 spawnLocation = spawnSpots[Random.Range(0, 7)];
         GameObject cat = (GameObject)Instantiate(catPrefab, spawnLocation, new Quaternion());
+		EnemyScript enemy = cat.GetComponent ("EnemyScript") as EnemyScript;
+		enemy.damage = 2;
     }
 
     void spawnLion()
     {
         Vector3 spawnLocation = spawnSpots[Random.Range(0, 7)];
         GameObject lion = (GameObject)Instantiate(lionPrefab, spawnLocation, new Quaternion());
+		EnemyScript enemy = lion.GetComponent ("EnemyScript") as EnemyScript;
+		enemy.damage = 3;
     }
 
     // Update is called once per frame
